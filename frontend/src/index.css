@@ -1,0 +1,226 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Base border radius used throughout the UI */
+  --radius: 0.5rem;
+
+  /* Main background color of the application */
+  --background: oklch(1 0 0);
+  /* Main text color that appears on the background */
+  --foreground: oklch(0.2 0.01 240);
+
+  /* Background color for card components */
+  --card: oklch(1 0 0);
+  /* Text color that appears on cards */
+  --card-foreground: oklch(0.2 0.01 240);
+
+  /* Background color for popover/dropdown menus */
+  --popover: oklch(1 0 0);
+  /* Text color that appears in popovers/dropdowns */
+  --popover-foreground: oklch(0.2 0.01 240);
+
+  /* Primary brand color, used for main CTAs, active states, links */
+  --primary: oklch(0.57 0.2 260);
+  /* Text color that appears on primary-colored elements */
+  --primary-foreground: oklch(0.98 0.005 240);
+
+  /* Secondary color, used for less prominent actions/buttons */
+  --secondary: oklch(0.94 0.01 240);
+  /* Text color that appears on secondary-colored elements */
+  --secondary-foreground: oklch(0.3 0.01 240);
+
+  /* Background color for muted elements (disabled buttons, less emphasized UI) */
+  --muted: oklch(0.94 0.01 240);
+  /* Text color for muted elements */
+  --muted-foreground: oklch(0.64 0.03 240);
+
+  /* Background color for accented elements (highlights, featured content) */
+  --accent: oklch(0.94 0.01 240);
+  /* Text color that appears on accent-colored elements */
+  --accent-foreground: oklch(0.3 0.01 240);
+
+  /* Background color for destructive actions (delete, remove) */
+  --destructive: oklch(0.65 0.2 25);
+  /* Text color that appears on destructive elements */
+  --destructive-foreground: oklch(0.98 0.005 240);
+
+  /* Color for borders around elements */
+  --border: oklch(0.9 0.01 240);
+  /* Color for form input borders/backgrounds */
+  --input: oklch(0.9 0.01 240);
+  /* Color for focus rings (accessibility, keyboard navigation highlights) */
+  --ring: oklch(0.57 0.2 260);
+
+  /* Colors for charts and data visualizations */
+  --chart-1: oklch(0.65 0.2 25);
+  --chart-2: oklch(0.6 0.15 180);
+  --chart-3: oklch(0.4 0.1 200);
+  --chart-4: oklch(0.75 0.2 85);
+  --chart-5: oklch(0.7 0.2 60);
+
+  /* Sidebar-specific colors - allows custom theming of sidebar separately */
+  --sidebar: oklch(1 0 0); /* Sidebar background color */
+  --sidebar-foreground: oklch(0.2 0.01 240); /* Sidebar text color */
+  --sidebar-primary: oklch(0.57 0.2 260); /* Sidebar primary action color */
+  --sidebar-primary-foreground: oklch(1 0 0); /* Text on sidebar primary elements */
+  --sidebar-accent: oklch(0.94 0.01 240); /* Sidebar accent elements */
+  --sidebar-accent-foreground: oklch(0.3 0.01 240); /* Text on sidebar accent elements */
+  --sidebar-border: oklch(0.9 0.01 240); /* Sidebar border color */
+  --sidebar-ring: oklch(0.57 0.2 260); /* Sidebar focus ring color */
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Light mode overrides when system prefers light theme */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* Dark mode theme - manually toggled via .dark class */
+.dark {
+  /* Dark mode uses darker background and lighter text */
+  --background: oklch(0.2 0.01 240);
+  --foreground: oklch(0.98 0.005 240);
+  --card: oklch(0.2 0.01 240);
+  --card-foreground: oklch(0.98 0.005 240);
+  --popover: oklch(0.2 0.01 240);
+  --popover-foreground: oklch(0.98 0.005 240);
+  --primary: oklch(0.6 0.22 250);
+  --primary-foreground: oklch(0.3 0.01 240);
+  --secondary: oklch(0.3 0.05 240);
+  --secondary-foreground: oklch(0.98 0.005 240);
+  --muted: oklch(0.3 0.05 240);
+  --muted-foreground: oklch(0.7 0.05 240);
+  --accent: oklch(0.3 0.05 240);
+  --accent-foreground: oklch(0.98 0.005 240);
+  --destructive: oklch(0.4 0.15 25);
+  --destructive-foreground: oklch(0.98 0.005 240);
+  --border: oklch(0.3 0.05 240);
+  --input: oklch(0.3 0.05 240);
+  --ring: oklch(0.5 0.2 250);
+  --chart-1: oklch(0.5 0.2 250);
+  --chart-2: oklch(0.55 0.15 180);
+  --chart-3: oklch(0.65 0.2 60);
+  --chart-4: oklch(0.6 0.2 300);
+  --chart-5: oklch(0.55 0.2 350);
+  --sidebar: oklch(0.2 0.01 240);
+  --sidebar-foreground: oklch(0.98 0.005 240);
+  --sidebar-primary: oklch(0.6 0.22 250);
+  --sidebar-primary-foreground: oklch(0.98 0.005 240);
+  --sidebar-accent: oklch(0.3 0.05 240);
+  --sidebar-accent-foreground: oklch(0.98 0.005 240);
+  --sidebar-border: oklch(0.3 0.05 240);
+  --sidebar-ring: oklch(0.5 0.2 250);
+}
+
+/* Inline theme mapping CSS variables to Tailwind theme */
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* Base layer applying border and outline styles to all elements */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
