@@ -1,8 +1,8 @@
 import { Route, Switch } from 'wouter'
 import { AppLayout } from './components/app-layout'
-import HomePage from './pages/HomePage'
-import SettingsPage from './pages/SettingsPage'
-import ConnectionDetailPage from './pages/ConnectionDetailPage'
+import { HomePage } from './components/home-page'
+import { SettingsPage } from './components/settings-page'
+import { ConnectionPage } from './components/connection-page'
 
 function App() {
     return (
@@ -10,7 +10,9 @@ function App() {
             <Switch>
                 <Route path="/" component={HomePage} />
                 <Route path="/settings" component={SettingsPage} />
-                <Route path="/connections/:connectionId" component={ConnectionDetailPage} />
+                <Route path="/connections/:connectionId">
+                    {params => <ConnectionPage connectionId={params.connectionId} />}
+                </Route>
             </Switch>
         </AppLayout>
     )

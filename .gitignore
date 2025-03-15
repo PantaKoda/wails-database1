@@ -112,7 +112,6 @@ go.work
 # Wails specific
 /build/bin
 /wails.exe
-/wails.json
 /go.work
 /go.work.sum
 

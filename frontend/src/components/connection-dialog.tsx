@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
-import { useNavigate } from "@tanstack/react-router"
+import { useLocation } from "wouter"
 import { toast } from "sonner"
 import { useConnection } from "../lib/connection-context"
-import { DATABASE_TYPES } from "../lib/database-icons" // Import from our new module
+import { DATABASE_TYPES } from "../lib/database-icons"
 import { Button } from "./ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "./ui/dialog"
 import { Input } from "./ui/input"
@@ -33,7 +33,7 @@ export function ConnectionDialog({ open, onOpenChange }: ConnectionDialogProps) 
     const [filePath, setFilePath] = useState("")
 
     const { addConnection } = useConnection()
-    const navigate = useNavigate()
+    const [, setLocation] = useLocation()
 
     // Filter databases based on search query
     useEffect(() => {
@@ -137,7 +137,7 @@ export function ConnectionDialog({ open, onOpenChange }: ConnectionDialogProps) 
         resetForm()
 
         // Navigate to the connection page
-        navigate({ to: "/connections/$connectionId", params: { connectionId: newConnectionId } })
+        setLocation(`/connections/${newConnectionId}`)
     }
 
     const resetForm = () => {
@@ -155,22 +155,9 @@ export function ConnectionDialog({ open, onOpenChange }: ConnectionDialogProps) 
             case "postgresql":
                 return "5432"
             case "mysql":
-            case "mariadb":
                 return "3306"
             case "mssql":
                 return "1433"
-            case "mongodb":
-                return "27017"
-            case "redis":
-                return "6379"
-            case "elasticsearch":
-                return "9200"
-            case "cassandra":
-                return "9042"
-            case "couchdb":
-                return "5984"
-            case "neo4j":
-                return "7687"
             default:
                 return ""
         }
@@ -252,7 +239,6 @@ export function ConnectionDialog({ open, onOpenChange }: ConnectionDialogProps) 
                         </DialogHeader>
 
                         <div className="space-y-4 py-2">
-                            {/* Rest of the form remains unchanged */}
                             <div className="space-y-2">
                                 <Label htmlFor="connection-name">Connection Name</Label>
                                 <Input
@@ -327,11 +313,6 @@ export function ConnectionDialog({ open, onOpenChange }: ConnectionDialogProps) 
                                             value={database}
                                             onChange={(e) => setDatabase(e.target.value)}
                                         />
-                                    </div>
-
-                                    <div className="flex items-center space-x-2">
-                                        <input type="checkbox" id="ssl" className="h-4 w-4" />
-                                        <Label htmlFor="ssl">Use SSL</Label>
                                     </div>
                                 </>
                             )}

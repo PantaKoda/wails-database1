@@ -45,6 +45,10 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
     const [connections, setConnections] = useState<ConnectionType[]>(initialConnections)
 
     const addConnection = (connection: ConnectionType) => {
+        // Ensure connection has an ID if not provided
+        if (!connection.id) {
+            connection.id = crypto.randomUUID()
+        }
         setConnections((prev) => [...prev, connection])
         return connection.id
     }
